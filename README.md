@@ -1,2 +1,397 @@
-# SIH--SMART-INDIA-HACKATHON-
-Solving a Stochastic Grid-World Markov Decision Process Using Value Iteration and Policy Iteration
+## NAME : MOHAMEED ARSHADULLAHA A
+## REG : 212224230161
+
+
+# AI-Based Classroom Attendance from Face Recognition
+
+## 📌 Project Overview
+
+AI-Based Classroom Attendance from Face Recognition is an automated attendance management system that uses computer vision and face recognition to identify students and mark their attendance.
+
+The system reduces the time required for manual roll calls, minimizes human errors, and provides teachers with a web-based dashboard to manage attendance records.
+
+---
+
+## 🎯 Objective
+
+The main objective of this project is to develop a fully functional classroom attendance system that can:
+
+* Detect multiple student faces from a classroom image.
+* Recognize registered students using face recognition.
+* Automatically mark recognized students as **Present**.
+* Mark students who are not detected as **Absent**.
+* Store student profiles and attendance records in a database.
+* Allow teachers to view and modify attendance.
+* Export attendance reports as CSV files.
+
+---
+
+## 🚀 Features
+
+### Student Registration
+
+* Register students using their name and roll number.
+* Capture or upload student face images.
+* Generate face representations for recognition.
+
+### Automatic Attendance
+
+* Support for classroom photos.
+* Support for live camera input.
+* Detect multiple faces.
+* Recognize registered students.
+* Automatically generate Present/Absent status.
+
+### Teacher Dashboard
+
+* View daily attendance.
+* View student details.
+* Manually correct attendance.
+* View attendance history.
+* Calculate attendance percentage.
+* Export attendance records as CSV.
+
+### Database
+
+The system stores:
+
+* Student profiles
+* Student face data
+* Attendance date
+* Attendance time
+* Attendance status
+
+---
+
+## 🏗️ System Architecture
+
+```text
+             ┌──────────────────────────┐
+             │  Live Camera / Classroom │
+             │          Photo           │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │     Face Detection       │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │    Face Recognition      │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │ Compare with Registered  │
+             │       Students           │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │ Present / Absent Status  │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │      SQLite Database     │
+             └────────────┬─────────────┘
+                          │
+                          ▼
+             ┌──────────────────────────┐
+             │     Teacher Dashboard    │
+             ├──────────────────────────┤
+             │ View | Edit | History    │
+             │       CSV Export         │
+             └──────────────────────────┘
+```
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology       | Purpose                       |
+| ---------------- | ----------------------------- |
+| Python           | Backend and application logic |
+| OpenCV           | Image and video processing    |
+| Face Recognition | Face identification           |
+| Flask            | Web application               |
+| SQLite           | Database                      |
+| HTML             | Dashboard structure           |
+| CSS              | Dashboard styling             |
+| JavaScript       | Frontend interaction          |
+| Pandas           | CSV report generation         |
+
+---
+
+## 📂 Project Structure
+
+```text
+AI-Classroom-Attendance/
+│
+├── app.py
+├── database.py
+├── face_recognition.py
+├── attendance.py
+├── requirements.txt
+├── README.md
+│
+├── database/
+│   └── attendance.db
+│
+├── known_faces/
+│   ├── student_001/
+│   ├── student_002/
+│   └── student_003/
+│
+├── templates/
+│   ├── index.html
+│   ├── register.html
+│   ├── attendance.html
+│   ├── dashboard.html
+│   └── history.html
+│
+├── static/
+│   ├── css/
+│   └── js/
+│
+├── uploads/
+│
+├── exports/
+│
+├── demo/
+│
+└── report/
+    └── project_report.pdf
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/AI-Classroom-Attendance.git
+```
+
+### 2. Open the project
+
+```bash
+cd AI-Classroom-Attendance
+```
+
+### 3. Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+### 4. Activate the virtual environment
+
+#### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+#### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+### 5. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Run the application
+
+```bash
+python app.py
+```
+
+Open the application in your browser:
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+## 👨‍🏫 System Workflow
+
+### Step 1 — Register Students
+
+The teacher enters:
+
+* Student name
+* Roll number
+* Face image
+
+The system stores the student's information and face representation.
+
+### Step 2 — Start Attendance
+
+The teacher can either:
+
+* Upload a classroom photograph, or
+* Start the live camera.
+
+### Step 3 — Detect Faces
+
+The system detects all visible faces in the classroom image/video.
+
+### Step 4 — Recognize Students
+
+Each detected face is compared with registered student face data.
+
+### Step 5 — Mark Attendance
+
+Recognized students are automatically marked:
+
+```text
+Student 01 → Present
+Student 02 → Present
+Student 03 → Absent
+```
+
+### Step 6 — Teacher Verification
+
+The teacher can review the generated attendance and manually correct any mistakes.
+
+### Step 7 — Export
+
+The teacher can export the attendance report as a CSV file.
+
+---
+
+## 🗄️ Database Design
+
+### Students Table
+
+```text
+students
+--------------------------------
+id
+roll_number
+name
+face_embedding
+created_at
+```
+
+### Attendance Table
+
+```text
+attendance
+--------------------------------
+id
+student_id
+date
+time
+status
+```
+
+---
+
+## 📊 Accuracy Evaluation
+
+The system will be tested using a separate test dataset.
+
+Example:
+
+```text
+Total Test Faces       : 100
+Correct Recognitions   : 94
+Incorrect Recognitions : 6
+
+Recognition Accuracy   : 94%
+```
+
+The final accuracy will be calculated from the actual experimental results.
+
+The evaluation will consider:
+
+* Recognition accuracy
+* False recognition
+* Missed recognition
+* Different face angles
+* Different lighting conditions
+* Multiple students in a single image
+
+---
+
+## 🎥 Demo Video
+
+The 2–3 minute demonstration will show:
+
+1. Student registration
+2. Face data creation
+3. Classroom photo/live camera
+4. Automatic face detection
+5. Student recognition
+6. Attendance marking
+7. Teacher dashboard
+8. Attendance correction
+9. CSV report export
+
+---
+
+## 📑 Project Report
+
+The project report contains:
+
+* Problem Statement
+* Objectives
+* Existing System
+* Proposed System
+* System Architecture
+* Technologies Used
+* Dataset Details
+* Face Detection Method
+* Face Recognition Method
+* Database Design
+* Implementation
+* Accuracy Results
+* Screenshots
+* Limitations
+* Future Enhancements
+* Conclusion
+* References
+
+---
+
+## 🔮 Future Enhancements
+
+* Mobile application
+* Cloud database
+* Multi-classroom support
+* Real-time attendance notifications
+* Improved recognition under poor lighting
+* Anti-spoofing / liveness detection
+* Attendance analytics
+* Student and teacher authentication
+
+---
+
+## ⚠️ Privacy & Security
+
+Face data is biometric information. A real deployment should obtain appropriate consent, protect stored face representations, restrict access to authorized teachers, and follow applicable privacy and institutional policies.
+
+---
+
+## 👥 Project Team
+
+**Project:** AI-Based Classroom Attendance from Face Recognition
+
+**Domain:** Artificial Intelligence / Computer Vision
+
+**Platform:** Web Application
+
+---
+
+## 📜 License
+
+This project is developed for educational and academic purposes.
